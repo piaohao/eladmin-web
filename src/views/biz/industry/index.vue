@@ -40,7 +40,7 @@
             <span>{{ parseTime(scope.row.updatedAt) }}</span>
           </template>
         </el-table-column>
-        <el-table-column v-permission="['admin','Industry:edit','Industry:del']" label="操作" width="150px" align="center">
+        <el-table-column v-permission="['admin','industry:edit','industry:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
               :data="scope.row"
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import crudIndustry from '@/api/Industry'
+import crudIndustry from '@/api/biz/industry'
 import CRUD, { presenter, header, form, crud } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
@@ -69,14 +69,14 @@ export default {
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: 'industry', url: 'api/Industry', sort: 'id,desc', crudMethod: { ...crudIndustry }})
+    return CRUD({ title: 'Industry', url: 'api/industry', sort: 'id,desc', crudMethod: { ...crudIndustry }})
   },
   data() {
     return {
       permission: {
-        add: ['admin', 'Industry:add'],
-        edit: ['admin', 'Industry:edit'],
-        del: ['admin', 'Industry:del']
+        add: ['admin', 'industry:add'],
+        edit: ['admin', 'industry:edit'],
+        del: ['admin', 'industry:del']
       },
       rules: {
         name: [

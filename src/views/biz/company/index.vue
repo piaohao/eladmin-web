@@ -104,7 +104,7 @@
         <el-table-column prop="districtId" label="districtId" />
         <el-table-column prop="industryId" label="industryId" />
         <el-table-column prop="welfareId" label="welfareId" />
-        <el-table-column v-permission="['admin','Company:edit','Company:del']" label="操作" width="150px" align="center">
+        <el-table-column v-permission="['admin','company:edit','company:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
               :data="scope.row"
@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import crudCompany from '@/api/Company'
+import crudCompany from '@/api/biz/company'
 import CRUD, { presenter, header, form, crud } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
@@ -133,14 +133,14 @@ export default {
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: 'company', url: 'api/Company', sort: 'id,desc', crudMethod: { ...crudCompany }})
+    return CRUD({ title: 'Company', url: 'api/company', sort: 'id,desc', crudMethod: { ...crudCompany }})
   },
   data() {
     return {
       permission: {
-        add: ['admin', 'Company:add'],
-        edit: ['admin', 'Company:edit'],
-        del: ['admin', 'Company:del']
+        add: ['admin', 'company:add'],
+        edit: ['admin', 'company:edit'],
+        del: ['admin', 'company:del']
       },
       rules: {
         createdAt: [

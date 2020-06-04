@@ -68,7 +68,7 @@
         <el-table-column prop="cityId" label="城市id" />
         <el-table-column prop="email" label="邮箱" />
         <el-table-column prop="avatar" label="头像" />
-        <el-table-column v-permission="['admin','Resume:edit','Resume:del']" label="操作" width="150px" align="center">
+        <el-table-column v-permission="['admin','resume:edit','resume:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
               :data="scope.row"
@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import crudResume from '@/api/Resume'
+import crudResume from '@/api/biz/resume'
 import CRUD, { presenter, header, form, crud } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
@@ -97,14 +97,14 @@ export default {
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: 'resume', url: 'api/Resume', sort: 'id,desc', crudMethod: { ...crudResume }})
+    return CRUD({ title: 'Resume', url: 'api/resume', sort: 'id,desc', crudMethod: { ...crudResume }})
   },
   data() {
     return {
       permission: {
-        add: ['admin', 'Resume:add'],
-        edit: ['admin', 'Resume:edit'],
-        del: ['admin', 'Resume:del']
+        add: ['admin', 'resume:add'],
+        edit: ['admin', 'resume:edit'],
+        del: ['admin', 'resume:del']
       },
       rules: {
         createdAt: [

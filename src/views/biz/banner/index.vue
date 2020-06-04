@@ -48,7 +48,7 @@
             <span>{{ parseTime(scope.row.updatedAt) }}</span>
           </template>
         </el-table-column>
-        <el-table-column v-permission="['admin','Banner:edit','Banner:del']" label="操作" width="150px" align="center">
+        <el-table-column v-permission="['admin','banner:edit','banner:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
               :data="scope.row"
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import crudBanner from '@/api/Banner'
+import crudBanner from '@/api/biz/banner'
 import CRUD, { presenter, header, form, crud } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
@@ -77,14 +77,14 @@ export default {
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: 'banner', url: 'api/Banner', sort: 'id,desc', crudMethod: { ...crudBanner }})
+    return CRUD({ title: 'Banner', url: 'api/banner', sort: 'id,desc', crudMethod: { ...crudBanner }})
   },
   data() {
     return {
       permission: {
-        add: ['admin', 'Banner:add'],
-        edit: ['admin', 'Banner:edit'],
-        del: ['admin', 'Banner:del']
+        add: ['admin', 'banner:add'],
+        edit: ['admin', 'banner:edit'],
+        del: ['admin', 'banner:del']
       },
       rules: {
         createdAt: [

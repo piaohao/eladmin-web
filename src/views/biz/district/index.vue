@@ -44,7 +44,7 @@
             <span>{{ parseTime(scope.row.updatedAt) }}</span>
           </template>
         </el-table-column>
-        <el-table-column v-permission="['admin','District:edit','District:del']" label="操作" width="150px" align="center">
+        <el-table-column v-permission="['admin','district:edit','district:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
               :data="scope.row"
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import crudDistrict from '@/api/District'
+import crudDistrict from '@/api/biz/district'
 import CRUD, { presenter, header, form, crud } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
@@ -73,14 +73,14 @@ export default {
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: 'district', url: 'api/District', sort: 'id,desc', crudMethod: { ...crudDistrict }})
+    return CRUD({ title: 'District', url: 'api/district', sort: 'id,desc', crudMethod: { ...crudDistrict }})
   },
   data() {
     return {
       permission: {
-        add: ['admin', 'District:add'],
-        edit: ['admin', 'District:edit'],
-        del: ['admin', 'District:del']
+        add: ['admin', 'district:add'],
+        edit: ['admin', 'district:edit'],
+        del: ['admin', 'district:del']
       },
       rules: {
         name: [

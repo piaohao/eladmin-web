@@ -24,7 +24,7 @@
         <el-table-column type="selection" width="55" />
         <el-table-column prop="id" label="id" />
         <el-table-column prop="name" label="兴趣" />
-        <el-table-column v-permission="['admin','Interest:edit','Interest:del']" label="操作" width="150px" align="center">
+        <el-table-column v-permission="['admin','interest:edit','interest:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
               :data="scope.row"
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import crudInterest from '@/api/Interest'
+import crudInterest from '@/api/biz/interest'
 import CRUD, { presenter, header, form, crud } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
@@ -53,14 +53,14 @@ export default {
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: 'interest', url: 'api/Interest', sort: 'id,desc', crudMethod: { ...crudInterest }})
+    return CRUD({ title: 'Interest', url: 'api/interest', sort: 'id,desc', crudMethod: { ...crudInterest }})
   },
   data() {
     return {
       permission: {
-        add: ['admin', 'Interest:add'],
-        edit: ['admin', 'Interest:edit'],
-        del: ['admin', 'Interest:del']
+        add: ['admin', 'interest:add'],
+        edit: ['admin', 'interest:edit'],
+        del: ['admin', 'interest:del']
       },
       rules: {
       }    }

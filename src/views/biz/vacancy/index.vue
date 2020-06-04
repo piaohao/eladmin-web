@@ -116,7 +116,7 @@
         <el-table-column prop="salaryType" label="日，月，年" />
         <el-table-column prop="salaryRangeLow" label="salaryRangeLow" />
         <el-table-column prop="salaryRangeHigh" label="salaryRangeHigh" />
-        <el-table-column v-permission="['admin','Vacancy:edit','Vacancy:del']" label="操作" width="150px" align="center">
+        <el-table-column v-permission="['admin','vacancy:edit','vacancy:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
               :data="scope.row"
@@ -132,7 +132,7 @@
 </template>
 
 <script>
-import crudVacancy from '@/api/Vacancy'
+import crudVacancy from '@/api/biz/vacancy'
 import CRUD, { presenter, header, form, crud } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
@@ -145,14 +145,14 @@ export default {
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: 'vacancy', url: 'api/Vacancy', sort: 'id,desc', crudMethod: { ...crudVacancy }})
+    return CRUD({ title: 'Vacancy', url: 'api/vacancy', sort: 'id,desc', crudMethod: { ...crudVacancy }})
   },
   data() {
     return {
       permission: {
-        add: ['admin', 'Vacancy:add'],
-        edit: ['admin', 'Vacancy:edit'],
-        del: ['admin', 'Vacancy:del']
+        add: ['admin', 'vacancy:add'],
+        edit: ['admin', 'vacancy:edit'],
+        del: ['admin', 'vacancy:del']
       },
       rules: {
         createdAt: [

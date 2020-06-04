@@ -80,7 +80,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="majorId" label="专业id" />
-        <el-table-column v-permission="['admin','Mentor:edit','Mentor:del']" label="操作" width="150px" align="center">
+        <el-table-column v-permission="['admin','mentor:edit','mentor:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
               :data="scope.row"
@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import crudMentor from '@/api/Mentor'
+import crudMentor from '@/api/biz/mentor'
 import CRUD, { presenter, header, form, crud } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
@@ -109,14 +109,14 @@ export default {
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: 'mentor', url: 'api/Mentor', sort: 'id,desc', crudMethod: { ...crudMentor }})
+    return CRUD({ title: 'Mentor', url: 'api/mentor', sort: 'id,desc', crudMethod: { ...crudMentor }})
   },
   data() {
     return {
       permission: {
-        add: ['admin', 'Mentor:add'],
-        edit: ['admin', 'Mentor:edit'],
-        del: ['admin', 'Mentor:del']
+        add: ['admin', 'mentor:add'],
+        edit: ['admin', 'mentor:edit'],
+        del: ['admin', 'mentor:del']
       },
       rules: {
         createdAt: [

@@ -52,7 +52,7 @@
             <span>{{ parseTime(scope.row.updatedAt) }}</span>
           </template>
         </el-table-column>
-        <el-table-column v-permission="['admin','Message:edit','Message:del']" label="操作" width="150px" align="center">
+        <el-table-column v-permission="['admin','message:edit','message:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
               :data="scope.row"
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import crudMessage from '@/api/Message'
+import crudMessage from '@/api/biz/message'
 import CRUD, { presenter, header, form, crud } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
@@ -81,14 +81,14 @@ export default {
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: 'message', url: 'api/Message', sort: 'id,desc', crudMethod: { ...crudMessage }})
+    return CRUD({ title: 'Message', url: 'api/message', sort: 'id,desc', crudMethod: { ...crudMessage }})
   },
   data() {
     return {
       permission: {
-        add: ['admin', 'Message:add'],
-        edit: ['admin', 'Message:edit'],
-        del: ['admin', 'Message:del']
+        add: ['admin', 'message:add'],
+        edit: ['admin', 'message:edit'],
+        del: ['admin', 'message:del']
       },
       rules: {
         type: [

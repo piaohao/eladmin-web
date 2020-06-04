@@ -36,7 +36,7 @@
         <el-table-column prop="cityId" label="cityId" />
         <el-table-column prop="stateId" label="stateId" />
         <el-table-column prop="districtId" label="districtId" />
-        <el-table-column v-permission="['admin','School:edit','School:del']" label="操作" width="150px" align="center">
+        <el-table-column v-permission="['admin','school:edit','school:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
               :data="scope.row"
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import crudSchool from '@/api/School'
+import crudSchool from '@/api/biz/school'
 import CRUD, { presenter, header, form, crud } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
@@ -65,14 +65,14 @@ export default {
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: 'school', url: 'api/School', sort: 'id,desc', crudMethod: { ...crudSchool }})
+    return CRUD({ title: 'School', url: 'api/school', sort: 'id,desc', crudMethod: { ...crudSchool }})
   },
   data() {
     return {
       permission: {
-        add: ['admin', 'School:add'],
-        edit: ['admin', 'School:edit'],
-        del: ['admin', 'School:del']
+        add: ['admin', 'school:add'],
+        edit: ['admin', 'school:edit'],
+        del: ['admin', 'school:del']
       },
       rules: {
       }    }

@@ -40,7 +40,7 @@
             <span>{{ parseTime(scope.row.updatedAt) }}</span>
           </template>
         </el-table-column>
-        <el-table-column v-permission="['admin','Education:edit','Education:del']" label="操作" width="150px" align="center">
+        <el-table-column v-permission="['admin','education:edit','education:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
               :data="scope.row"
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import crudEducation from '@/api/Education'
+import crudEducation from '@/api/biz/education'
 import CRUD, { presenter, header, form, crud } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
@@ -69,14 +69,14 @@ export default {
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: 'education', url: 'api/Education', sort: 'id,desc', crudMethod: { ...crudEducation }})
+    return CRUD({ title: 'Education', url: 'api/education', sort: 'id,desc', crudMethod: { ...crudEducation }})
   },
   data() {
     return {
       permission: {
-        add: ['admin', 'Education:add'],
-        edit: ['admin', 'Education:edit'],
-        del: ['admin', 'Education:del']
+        add: ['admin', 'education:add'],
+        edit: ['admin', 'education:edit'],
+        del: ['admin', 'education:del']
       },
       rules: {
         createdAt: [

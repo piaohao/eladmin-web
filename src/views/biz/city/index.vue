@@ -48,7 +48,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="firstCap" label="firstCap" />
-        <el-table-column v-permission="['admin','City:edit','City:del']" label="操作" width="150px" align="center">
+        <el-table-column v-permission="['admin','city:edit','city:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
               :data="scope.row"
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import crudCity from '@/api/City'
+import crudCity from '@/api/biz/city'
 import CRUD, { presenter, header, form, crud } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
@@ -77,14 +77,14 @@ export default {
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: 'city', url: 'api/City', sort: 'id,desc', crudMethod: { ...crudCity }})
+    return CRUD({ title: 'City', url: 'api/city', sort: 'id,desc', crudMethod: { ...crudCity }})
   },
   data() {
     return {
       permission: {
-        add: ['admin', 'City:add'],
-        edit: ['admin', 'City:edit'],
-        del: ['admin', 'City:del']
+        add: ['admin', 'city:add'],
+        edit: ['admin', 'city:edit'],
+        del: ['admin', 'city:del']
       },
       rules: {
         name: [

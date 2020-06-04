@@ -28,7 +28,7 @@
         <el-table-column prop="id" label="id" />
         <el-table-column prop="name" label="专业名称" />
         <el-table-column prop="collegeId" label="学院id" />
-        <el-table-column v-permission="['admin','Major:edit','Major:del']" label="操作" width="150px" align="center">
+        <el-table-column v-permission="['admin','major:edit','major:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
               :data="scope.row"
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import crudMajor from '@/api/Major'
+import crudMajor from '@/api/biz/major'
 import CRUD, { presenter, header, form, crud } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
@@ -57,14 +57,14 @@ export default {
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: 'major', url: 'api/Major', sort: 'id,desc', crudMethod: { ...crudMajor }})
+    return CRUD({ title: 'Major', url: 'api/major', sort: 'id,desc', crudMethod: { ...crudMajor }})
   },
   data() {
     return {
       permission: {
-        add: ['admin', 'Major:add'],
-        edit: ['admin', 'Major:edit'],
-        del: ['admin', 'Major:del']
+        add: ['admin', 'major:add'],
+        edit: ['admin', 'major:edit'],
+        del: ['admin', 'major:del']
       },
       rules: {
       }    }
