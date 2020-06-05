@@ -38,8 +38,8 @@
       <el-table ref="table" v-loading="crud.loading" :data="crud.data" size="small" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
         <el-table-column type="selection" width="55" />
         <el-table-column prop="id" label="id" />
-        <el-table-column prop="vacancyId" label="职位id" />
-        <el-table-column prop="cityId" label="城市id" />
+        <el-table-column prop="vacancy.name" label="职位" />
+        <el-table-column prop="city.name" label="城市" />
         <el-table-column prop="address" label="地址" />
         <el-table-column prop="street" label="街道" />
         <el-table-column prop="longitude" label="经度" />
